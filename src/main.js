@@ -10,7 +10,7 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import animate from 'animate.css'
+import animated from 'animate.css'
 
 //NProgress
 import '@/permission'
@@ -18,7 +18,7 @@ import '@/permission'
 Vue.use(ElementUI)
 
 //animate
-Vue.use(animate)
+Vue.use(animated)
 
 Vue.config.productionTip = false
 

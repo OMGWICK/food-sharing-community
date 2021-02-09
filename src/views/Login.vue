@@ -1,23 +1,29 @@
 <template>
   <div class="homepage-hero-module">
     <div class="video-container">
-      <div :style="fixStyle" class="filter"></div>
+      <div :style="fixStyle" class="filter">
+
+        <!-- <transition enter-active-class="animated bounceIn" 
+        leave-active-class="animated bounceOut"
+        :duration="200">
+        </transition> -->
+
+      </div>
       <video ref="videos" :style="fixStyle" loop autoplay muted class="fillWidth" v-on:canplay="canplay">
         <source :src="bgvideo[bgindex]" type="video/mp4"/>
-        浏览器不支持 video 标签，建议升级浏览器。
+        浏览器不支持 video 标签，建议升级浏览器!
         <!-- <source src="../assets/video/bg1.mp4" type="video/webm"/>
         浏览器不支持 video 标签，建议升级浏览器。 -->
       </video>
       <div class="poster hidden" v-if="!vedioCanPlay">
         <!-- 无video图片 -->
-        <img :style="fixStyle" src="../assets/img/pexels-ella-olsson-1640777.jpg" alt="">
+        <!-- <img :style="fixStyle" src="../assets/img/pexels-ella-olsson-1640777.jpg" alt=""> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import func from '../../vue-temp/vue-editor-bridge';
 
 export default {
   name: "Login",
@@ -27,6 +33,7 @@ export default {
         fixStyle: '',
         bgvideo:[require('../assets/video/bg0.mp4')],
         bgindex:0,
+        flag: false,
       }
     },
     methods: {

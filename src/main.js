@@ -15,6 +15,11 @@ import animated from 'animate.css'
 //NProgress
 import '@/permission'
 
+//VuePageTransition
+import VuePageTransition from 'vue-page-transition'
+
+Vue.use(VuePageTransition)
+
 Vue.use(ElementUI)
 
 //animate

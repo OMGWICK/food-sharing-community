@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <transition leave-active-class="animated fadeOut" :duration="{ enter: 200, leave: 300 }">
+    <vue-page-transition name="zoom">
       <router-view/>
-    </transition>
+    </vue-page-transition>
   </div>
 </template>
 

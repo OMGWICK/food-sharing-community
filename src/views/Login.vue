@@ -5,7 +5,7 @@
 
         <!-- <transition enter-active-class="animated bounceIn" 
         leave-active-class="animated bounceOut"
-        :duration="200">
+        :duration="{ enter: 200, leave: 300 }">
         </transition> -->
 
       </div>

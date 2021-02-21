@@ -5,10 +5,11 @@ const COS = require('cos-nodejs-sdk-v5');
 const glob = require('glob');
 const path = require('path');
 
+require('dotenv').config()
 // 使用永久密钥创建实例
 var cos = new COS({
-    SecretId: 'AKIDnS8Zlm3ifARRByEzUuHTamiiZIni30LU',
-    SecretKey: 'c18zB9tRlrkTxCGVQ5UgrCQPH0c2JSL0'
+    SecretId: process.env.VUE_APP_SECRETID ,
+    SecretKey: process.env.VUE_APP_SECRETKEY
 });
 
 const isWindow = /^win/.test(process.platform)

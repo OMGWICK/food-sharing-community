@@ -7,7 +7,8 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { title:'首页' }
   },
 
   {
@@ -20,6 +21,7 @@ const routes = [{
     path: '/404',
     name: '404',
     component: () => import('@/views/404'),
+    meta: { title:'404' }
   },
 
   {

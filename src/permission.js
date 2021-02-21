@@ -1,5 +1,6 @@
 import router from './router'
 import { getToken } from '@/utils/jsToken'
+import getPageTitle from '@/utils/page-title'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 
@@ -8,6 +9,10 @@ const whiteList = ['/login']  // when no token , don't have to jump anywhere
 
 router.beforeEach((to,from,next) => {
     NProgress.start()
+
+    // set page title
+    document.title = getPageTitle(to.meta.title)
+    
     const hasToken = getToken()
     if(hasToken){
         //has token

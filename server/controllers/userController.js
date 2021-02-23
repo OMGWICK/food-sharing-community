@@ -36,7 +36,7 @@ const ERROR_CODE = {
 }
 
 
-exports.login_post = function (req, res) {
+exports.login_post =async function (req, res) {
     console.log('login')
     let username = req.body.username;
     let password = req.body.password;

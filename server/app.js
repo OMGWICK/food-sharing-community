@@ -9,11 +9,14 @@ var mongoose= require('mongoose');
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
-var vertoken = require('./token_vertify');
+var vertoken = require('./token_vertify');  //token
 var expressJWT = require('express-jwt');
+
+var compression = require('compression')  //g
 
 var app = express();
 
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // view engine setup
@@ -61,7 +64,7 @@ app.use(function (req, res, next) {
 // }));
 
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
+app.use('/inapi', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -68,7 +68,7 @@
       </video>
       <div class="poster hidden" v-if="!vedioCanPlay">
         <!-- 无video图片 -->
-        <!-- <img :style="fixStyle" src="../assets/img/pexels-ella-olsson-1640777.jpg" alt=""> -->
+        <img :style="fixStyle" src="../assets/img/pexels-ella-olsson-1640777.png" alt="">
       </div>
     </div>
   </div>

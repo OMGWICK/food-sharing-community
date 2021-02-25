@@ -18,6 +18,13 @@ const routes = [{
   }, 
 
   {
+    path: '/center',
+    name: 'Center',
+    component: () => import('@/views/center'),
+    meta: { title:'创作中心' }
+  },
+
+  {
     path: '/404',
     name: '404',
     component: () => import('@/views/404'),

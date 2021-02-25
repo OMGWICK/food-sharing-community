@@ -11,7 +11,7 @@
           <el-menu-item index="1">首页</el-menu-item>
           <el-menu-item index="2">分享圈</el-menu-item>
           <el-menu-item index="3">关于我们</el-menu-item>
-          <el-menu-item index="4">创作中心</el-menu-item>
+          <el-menu-item index="/center">创作中心</el-menu-item>
         </el-menu>
       </div>
       <div class="nav-user">
@@ -55,7 +55,7 @@ export default {
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e6e6e6;
-  z-index: 999999;
+  z-index: 9999;
   position: fixed;
   .nav-logo {
     flex: 1;
@@ -112,6 +112,15 @@ export default {
 @media screen and (max-width: 860px) {
   .home {
     width: 860px;
+  }
+  .navbar {
+    flex: 0 0 480px;
+  }
+  .nav-logo{
+    flex: 0 0 217px !important;
+  }
+  .nav-user{
+    flex: 0 0 130px !important;
   }
 }
 

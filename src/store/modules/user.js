@@ -38,7 +38,10 @@ const actions = {
                 if (code == '200') {
                     commit('SET_TOKEN', res.token)
                     setToken(res.token)
-                    Message.success('登陆成功');
+                    Message.success({
+                        message:'登陆成功',
+                        offset:80,
+                    });
                 } else {
                     Message.error(res.msg)
                 }
@@ -57,7 +60,10 @@ const actions = {
                 if (code == '200') {
                     commit('SET_TOKEN', res.token)
                     setToken(res.token)
-                    Message.success('注册成功');
+                    Message.success({
+                        message:'注册成功',
+                        offset:80,
+                    });
                 } else {
                     Message.error(res.msg)
                 }

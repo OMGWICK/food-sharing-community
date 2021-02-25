@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-carousel :interval="6000" indicator-position="outside">
+    <el-carousel :interval="8000" indicator-position="outside">
       <el-carousel-item class="carousel-item" v-for="(item, index) in carouselItem" :key="index+'a'">
         <img :src="item.imgUrl" class="carousel-img" alt />
         <div class="carousel-content">

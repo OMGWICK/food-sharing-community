@@ -21,7 +21,7 @@ axios.defaults.baseURL = ''
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    if (store.getters.token) {
+    if (store.state.user.token) {
       config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     console.log(config)

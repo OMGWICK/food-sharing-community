@@ -1,16 +1,14 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <div class="nav">
       <div class="nav-logo">
         <div class="gs-gs">Gourmet Share</div>
       </div>
       <div class="navbar">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router>
-          <el-menu-item index="1">首页</el-menu-item>
+          <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="2">分享圈</el-menu-item>
-          <el-menu-item index="3">关于我们</el-menu-item>
+          <el-menu-item index="/about">关于我们</el-menu-item>
           <el-menu-item index="/center">创作中心</el-menu-item>
         </el-menu>
       </div>
@@ -19,31 +17,37 @@
         <div class="user">用户信息</div>
       </div>
     </div>
-    <div class="carousel">
+    <router-view></router-view>
+    <!-- <div class="carousel">
       <Carousel />
     </div>
     <div class="home-search">
       <HomeSearch />
-    </div>
+    </div> -->
+    <footer>
+      <PageFooter />
+    </footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-import Carousel from "@/components/Carousel";
-import HomeSearch from "@/components/HomeSearch";
+// import Carousel from "@/components/Carousel";
+// import HomeSearch from "@/components/HomeSearch";
+import PageFooter from "@/components/PageFooter";
 
 export default {
   name: "Home",
   data() {
     return {
-      activeIndex: "1"
+      activeIndex: "/"
     };
   },
   components: {
-    Carousel,
-    HomeSearch
+    // Carousel,
+    // HomeSearch,
+    PageFooter
   }
 };
 </script>

@@ -8,27 +8,44 @@ const routes = [{
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { title:'首页' }
+    redirect: '/index',
+    children: [{
+      path: '/index',
+      name: 'Index',
+      component: () => import('@/views/Index')
+    },
+    {
+      path:'/about',
+      name:'About',
+      component: () => import('@/views/About'),
+      meta: {
+        title: '关于我们'
+      }
+    }
+  ],
   },
-
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login'),
-  }, 
+  },
 
   {
     path: '/center',
     name: 'Center',
-    component: () => import('@/views/center'),
-    meta: { title:'创作中心' }
+    component: () => import('@/views/Center'),
+    meta: {
+      title: '创作中心'
+    }
   },
 
   {
     path: '/404',
     name: '404',
     component: () => import('@/views/404'),
-    meta: { title:'404' }
+    meta: {
+      title: '404'
+    }
   },
 
   {

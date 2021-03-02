@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\404.vue
- * @LastEditTime: 2021-03-02 19:52:31
+ * @LastEditTime: 2021-03-02 23:10:46
 -->
 <template>
   <div class="wscn-http404-container">

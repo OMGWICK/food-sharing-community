@@ -1,3 +1,9 @@
+<!--
+ * @Author: Spring Breeze
+ * @Date: 2021-03-01 18:43:48
+ * @FilePath: \food-sharing-community\src\views\Home.vue
+ * @LastEditTime: 2021-03-02 21:40:52
+-->
 <template>
   <div class="home">
     <div class="nav">
@@ -5,8 +11,13 @@
         <div class="gs-gs">Gourmet Share</div>
       </div>
       <div class="navbar">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router>
-          <el-menu-item index="/">首页</el-menu-item>
+        <el-menu
+          :default-active="activeIndex"
+          class="el-menu-demo"
+          mode="horizontal"
+          router
+        >
+          <el-menu-item index="/index">首页</el-menu-item>
           <el-menu-item index="2">分享圈</el-menu-item>
           <el-menu-item index="/about">关于我们</el-menu-item>
           <el-menu-item index="/center">创作中心</el-menu-item>
@@ -14,7 +25,22 @@
       </div>
       <div class="nav-user">
         <i class="el-icon-search"></i>
-        <div class="user">用户信息</div>
+        <div class="user" @click="toMine">
+          <el-avatar :size="20" :src="circleUrl" @error="errorHandler">
+            <img
+              src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            />
+          </el-avatar>
+        </div>
+        <span class="name" @click="toMine">{{ name }}</span>
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <i class="el-icon-setting" title="设置"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="logout">退出登陆</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
     <router-view></router-view>
@@ -35,20 +61,41 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 // import Carousel from "@/components/Carousel";
 // import HomeSearch from "@/components/HomeSearch";
-import PageFooter from "@/components/PageFooter";
+import PageFooter from '@/components/PageFooter';
+import { userInfo } from '@/api/user';
 
 export default {
-  name: "Home",
+  name: 'Home',
   data() {
     return {
-      activeIndex: "/"
+      activeIndex: this.$route.path,
+      circleUrl: '',
+      name: '',
     };
+  },
+  mounted() {
+    userInfo().then((res) => {
+      this.name = res.name;
+      this.circleUrl = res.userUrl || '';
+    });
+  },
+  methods: {
+    errorHandler() {
+      return true;
+    },
+    logout() {
+      this.$store.dispatch('user/logout');
+      this.$router.go(0);
+    },
+    toMine() {
+      this.$router.push('/mine');
+    },
   },
   components: {
     // Carousel,
     // HomeSearch,
-    PageFooter
-  }
+    PageFooter,
+  },
 };
 </script>
 
@@ -80,13 +127,17 @@ export default {
       padding: 2px 10px;
     }
     .user {
+      cursor: pointer;
       padding: 2px 10px;
       border-left: 1px solid #8e8e8e;
+    }
+    .el-dropdown-link {
+      cursor: pointer;
     }
   }
 }
 
-.carousel{
+.carousel {
   padding-top: 60px;
 }
 .el-menu-item {
@@ -118,13 +169,13 @@ export default {
     width: 860px;
   }
   .navbar {
-    flex: 0 0 480px;
+    flex: 0 0 400px;
   }
-  .nav-logo{
+  .nav-logo {
     flex: 0 0 217px !important;
   }
-  .nav-user{
-    flex: 0 0 130px !important;
+  .nav-user {
+    flex: 0 0 200px !important;
   }
 }
 
@@ -142,5 +193,13 @@ export default {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+.name {
+  padding: 4px 0;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #8e8e8e;
+  cursor: pointer;
 }
 </style>

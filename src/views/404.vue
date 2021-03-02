@@ -1,40 +1,74 @@
+<!--
+ * @Author: Spring Breeze
+ * @Date: 2021-03-01 18:43:48
+ * @FilePath: \food-sharing-community\src\views\404.vue
+ * @LastEditTime: 2021-03-02 19:52:31
+-->
 <template>
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
-        <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+        <img
+          class="pic-404__parent"
+          src="@/assets/404_images/404.png"
+          alt="404"
+        />
+        <img
+          class="pic-404__child left"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        />
+        <img
+          class="pic-404__child mid"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        />
+        <img
+          class="pic-404__child right"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        />
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">404！错误</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://github.com/OMGWICK" target="_blank">Wang Yan</a>
+        <div class="bullshit__info">
+          All rights reserved
+          <a
+            style="color:#20a0ff"
+            href="https://github.com/OMGWICK"
+            target="_blank"
+            >Wang Yan</a
+          >
         </div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">请检查您输入的URL是否正确，网络是否连接成功，或点击下面的按钮返回主页</div>
-        <a href="" class="bullshit__return-home">返回主页</a>
+        <div class="bullshit__info">
+          请检查您输入的URL是否正确，网络是否连接成功，或点击下面的按钮返回主页
+        </div>
+        <a href="#" class="bullshit__return-home" @click="toback">返回主页</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Page404',
   computed: {
     message() {
-      return '你要访问的页面不允许进入或不存在'
-    }
-  }
-}
+      return '你要访问的页面不允许进入或不存在';
+    },
+  },
+  methods: {
+    toback() {
+      this.$router.push('/index');
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
-.wscn-http404-container{
-  transform: translate(-50%,-50%);
+.wscn-http404-container {
+  transform: translate(-50%, -50%);
   position: absolute;
   top: 40%;
   left: 50%;

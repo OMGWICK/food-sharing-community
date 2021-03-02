@@ -1,28 +1,60 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+/*
+ * @Author: Spring Breeze
+ * @Date: 2021-03-01 18:43:48
+ * @FilePath: \food-sharing-community\src\router\index.js
+ * @LastEditTime: 2021-03-02 15:41:14
+ */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: '/',
     name: 'Home',
     component: Home,
     redirect: '/index',
-    children: [{
-      path: '/index',
-      name: 'Index',
-      component: () => import('@/views/Index')
-    },
-    {
-      path:'/about',
-      name:'About',
-      component: () => import('@/views/About'),
-      meta: {
-        title: '关于我们'
-      }
-    }
-  ],
+    children: [
+      {
+        path: '/index',
+        name: 'Index',
+        component: () => import('@/views/Index'),
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: () => import('@/views/About'),
+        meta: {
+          title: '关于我们',
+        },
+      },
+      {
+        path: '/mine',
+        name: 'Mine',
+        redirect: '/personal',
+        component: () => import('@/views/User'),
+        children: [
+          {
+            path: '/personal',
+            name: 'Personal',
+            component: () => import('@/views/user/Personal'),
+            meta: {
+              title: '个人空间',
+            },
+          },
+          {
+            path: '/dymine',
+            name: 'Dymine',
+            component: () => import('@/views/user/Dymine'),
+            meta: {
+              title: '我发布的',
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/login',
@@ -35,8 +67,8 @@ const routes = [{
     name: 'Center',
     component: () => import('@/views/Center'),
     meta: {
-      title: '创作中心'
-    }
+      title: '创作中心',
+    },
   },
 
   {
@@ -44,18 +76,18 @@ const routes = [{
     name: '404',
     component: () => import('@/views/404'),
     meta: {
-      title: '404'
-    }
+      title: '404',
+    },
   },
 
   {
     path: '*',
     redirect: '/404',
   },
-]
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\api\article.js
- * @LastEditTime: 2021-03-02 19:22:02
+ * @LastEditTime: 2021-03-03 14:22:59
  */
 import request from '@/utils/request';
 
@@ -44,6 +44,24 @@ export function userUrl(data) {
 export function mineArticleLists(params) {
   return request({
     url: '/mine/articleLists',
+    method: 'get',
+    params,
+  });
+}
+
+//获取精选
+export function goodArticleList(params) {
+  return request({
+    url: '/good/articleList',
+    method: 'get',
+    params,
+  });
+}
+
+//获取详情
+export function detailArticleList(params) {
+  return request({
+    url: '/detail/articleList',
     method: 'get',
     params,
   });

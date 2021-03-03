@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\store\modules\user.js
- * @LastEditTime: 2021-03-02 10:46:19
+ * @LastEditTime: 2021-03-03 20:58:18
  */
 import { login, register } from '@/api/user';
 import { getToken, setToken, removeToken } from '@/utils/jsToken';
@@ -55,6 +55,7 @@ const actions = {
           if (code == '200') {
             commit('SET_TOKEN', res.token);
             setToken(res.token);
+
             Message.success({
               message: '注册成功',
               offset: 80,

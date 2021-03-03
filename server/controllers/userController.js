@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \server\controllers\userController.js
- * @LastEditTime: 2021-03-02 14:46:35
+ * @LastEditTime: 2021-03-03 20:28:11
  */
 const Password = require('../models/password');
 const User = require('../models/users');
@@ -134,8 +134,8 @@ exports.register_post = async function(req, res) {
 };
 
 exports.userinfo_get = function(req, res) {
-  console.log('info');
-  User.findById({ _id: req.data.userid }, (err, doc) => {
+  const userId = req.query.userId || req.data.userid;
+  User.findById({ _id: userId }, (err, doc) => {
     if (err) {
       console.log(err);
       res.end();

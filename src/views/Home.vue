@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\Home.vue
- * @LastEditTime: 2021-03-02 21:40:52
+ * @LastEditTime: 2021-03-03 20:55:29
 -->
 <template>
   <div class="home">
@@ -18,7 +18,7 @@
           router
         >
           <el-menu-item index="/index">首页</el-menu-item>
-          <el-menu-item index="2">分享圈</el-menu-item>
+          <el-menu-item index="/share">分享圈</el-menu-item>
           <el-menu-item index="/about">关于我们</el-menu-item>
           <el-menu-item index="/center">创作中心</el-menu-item>
         </el-menu>

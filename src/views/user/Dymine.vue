@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-02 15:40:52
  * @FilePath: \food-sharing-community\src\views\user\Dymine.vue
- * @LastEditTime: 2021-03-02 22:34:33
+ * @LastEditTime: 2021-03-03 21:55:38
 -->
 <template>
   <div class="personal">
@@ -10,6 +10,7 @@
       v-for="(item, index) in lists"
       :body-style="{ padding: '0px' }"
       :key="index + 1"
+      @click.native="toDetail(item._id)"
     >
       <div class="headImg">
         <img :src="item.coverImgUrl" class="image" />
@@ -34,12 +35,11 @@
           background
           prev-text="上一页"
           next-text="下一页"
-          @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="parseInt($route.query.page || 1)"
           :page-sizes="[9, 12, 15, 18]"
           :page-size="100"
-          layout="total, sizes, prev, pager, next, jumper"
+          layout="total, prev, pager, next, jumper"
           :total="realTotal"
         ></el-pagination>
       </div>
@@ -60,6 +60,7 @@ export default {
   created() {
     this.mineArticleLists({
       pageNumber: parseInt(this.$route.query.page || 1),
+      userId: this.$route.query.id,
     });
   },
   // mounted() {
@@ -77,18 +78,20 @@ export default {
     },
 
     //分页
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-      let query = {
-        pageSize: val || 9,
-      };
-      this.mineArticleLists(query);
-    },
     handleCurrentChange(val) {
       this.$router.push({
         path: this.$route.path,
         query: {
+          userId: this.$route.query.id,
           page: val,
+        },
+      });
+    },
+    toDetail(id) {
+      this.$router.push({
+        path: '/detail',
+        query: {
+          id,
         },
       });
     },
@@ -96,7 +99,10 @@ export default {
   watch: {
     '$route.query'(query) {
       console.log(query);
-      this.mineArticleLists({ pageNumber: parseInt(query.page || 1) });
+      this.mineArticleLists({
+        pageNumber: parseInt(query.page || 1),
+        userId: this.$route.query.id,
+      });
     },
   },
 };

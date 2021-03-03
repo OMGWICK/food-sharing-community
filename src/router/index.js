@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\router\index.js
- * @LastEditTime: 2021-03-02 15:41:14
+ * @LastEditTime: 2021-03-03 20:36:06
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -21,6 +21,14 @@ const routes = [
         path: '/index',
         name: 'Index',
         component: () => import('@/views/Index'),
+      },
+      {
+        path: '/share',
+        name: 'Share',
+        component: () => import('@/views/Share'),
+        meta: {
+          title: '分享圈',
+        },
       },
       {
         path: '/about',
@@ -53,6 +61,14 @@ const routes = [
             },
           },
         ],
+      },
+      {
+        path: '/detail',
+        name: 'Detail',
+        component: () => import('@/views/Detail'),
+        meta: {
+          title: '详细',
+        },
       },
     ],
   },
@@ -88,6 +104,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+  mode: 'history',
 });
 
 export default router;

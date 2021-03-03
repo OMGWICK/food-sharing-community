@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\center.vue
- * @LastEditTime: 2021-03-02 20:43:45
+ * @LastEditTime: 2021-03-03 10:07:48
 -->
 <template>
   <div class="create-center">
@@ -33,7 +33,7 @@
     <div class="bottom">
       <el-input
         :minlength="2"
-        :maxlength="24"
+        :maxlength="11"
         v-model="title"
         placeholder="请输入文章标题"
       ></el-input>

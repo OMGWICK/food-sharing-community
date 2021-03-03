@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-02 12:56:11
  * @FilePath: \food-sharing-community\src\views\user\Personal.vue
- * @LastEditTime: 2021-03-02 21:43:57
+ * @LastEditTime: 2021-03-03 22:15:24
 -->
 <!--
  * @Author: Spring Breeze
@@ -75,46 +75,57 @@
           <el-input
             placeholder="请输入用户名称"
             v-model="ruleForm.formName"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="真实姓名:" prop="formRealName">
           <el-input
             placeholder="请输入真实姓名"
             v-model="ruleForm.formRealName"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="个人介绍:" prop="formIntroduce">
           <el-input
             placeholder="请介绍下自己吧"
             v-model="ruleForm.formIntroduce"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="邮件地址:" prop="formEmail">
           <el-input
             placeholder="请输入邮件地址"
             v-model="ruleForm.formEmail"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="联系电话:" prop="formCall">
           <el-input
             placeholder="请输入联系电话"
             v-model="ruleForm.formCall"
+            :disabled="show"
           ></el-input>
         </el-form-item>
 
         <el-form-item label="生日:" prop="formDay">
-          <el-input type="date" v-model="ruleForm.formDay"></el-input>
+          <el-input
+            type="date"
+            v-model="ruleForm.formDay"
+            :disabled="show"
+          ></el-input>
         </el-form-item>
         <el-form-item label="博客地址:" prop="formUrl">
           <el-input
             placeholder="请输入博客地址"
             v-model="ruleForm.formUrl"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="详细地址:" prop="formAddress">
           <el-input
             placeholder="请输入详细地址"
             v-model="ruleForm.formAddress"
+            :disabled="show"
           ></el-input>
         </el-form-item>
 
@@ -122,10 +133,15 @@
           <el-input
             placeholder="请输入邮政编码"
             v-model="ruleForm.formPostCode"
+            :disabled="show"
           ></el-input>
         </el-form-item>
         <el-form-item label="国 家:" prop="formCountry">
-          <el-select v-model="ruleForm.formCountry" placeholder="请选择国家">
+          <el-select
+            v-model="ruleForm.formCountry"
+            placeholder="请选择国家"
+            :disabled="show"
+          >
             <el-option label="美国" value="美国"></el-option>
             <el-option label="中国" value="中国"></el-option>
             <el-option label="日本" value="日本"></el-option>
@@ -134,13 +150,13 @@
           </el-select>
         </el-form-item>
         <el-form-item label="性别:" prop="formSex">
-          <el-radio-group v-model="ruleForm.formSex">
+          <el-radio-group v-model="ruleForm.formSex" :disabled="show">
             <el-radio label="男"></el-radio>
             <el-radio label="女"></el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="性取向:" prop="formSexx">
-          <el-radio-group v-model="ruleForm.formSexx">
+          <el-radio-group v-model="ruleForm.formSexx" :disabled="show">
             <el-radio label="男"></el-radio>
             <el-radio label="女"></el-radio>
           </el-radio-group>
@@ -151,6 +167,11 @@
             :loading="loading"
             type="primary"
             @click="submitForm('ruleForm')"
+            v-if="
+              $route.query.id === id ||
+                Object.keys($route.query).length === 0 ||
+                $route.query.id === undefined
+            "
             >保存个人资料</el-button
           >
         </el-form-item>
@@ -167,11 +188,12 @@ export default {
   name: 'Personal',
   data() {
     return {
+      id: '',
       loading: false,
       imageUrl:
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
-      name: '阿斯顿',
-      introduce: '阿斯顿',
+      name: '',
+      introduce: '',
       ruleForm: {
         introduce: '',
         formName: '',
@@ -194,6 +216,15 @@ export default {
         ],
       },
     };
+  },
+  computed: {
+    show() {
+      return (
+        this.$route.query.id !== this.id &&
+        Object.keys(this.$route.query).length !== 0 &&
+        this.$route.query.id !== undefined
+      );
+    },
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -263,27 +294,46 @@ export default {
         }
       });
     },
+    userInfo(query) {
+      userInfo(query)
+        .then((res) => {
+          this.ruleForm.formName = res.name;
+          this.ruleForm.formRealName = res.realname;
+          this.ruleForm.formEmail = res.email;
+          this.ruleForm.formCall = res.call;
+          this.ruleForm.formDay = res.day;
+          this.ruleForm.formUrl = res.url;
+          this.ruleForm.formSex = res.sex;
+          this.ruleForm.formSexx = res.sexx;
+          this.ruleForm.formIntroduce = res.introduce;
+          this.ruleForm.formAddress = res.address;
+          this.ruleForm.formPostCode = res.postcode;
+          this.ruleForm.formCountry = res.country;
+          this.ruleForm.name = res.name;
+          this.ruleForm.introduce = res.introduce;
+          this.imageUrl = res.userUrl;
+          this.introduce = res.introduce;
+          this.name = res.name;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getMineInfo() {
+      userInfo()
+        .then((res) => {
+          this.id = res._id;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   mounted() {
-    userInfo().then((res) => {
-      this.ruleForm.formName = res.name;
-      this.ruleForm.formRealName = res.realname;
-      this.ruleForm.formEmail = res.email;
-      this.ruleForm.formCall = res.call;
-      this.ruleForm.formDay = res.day;
-      this.ruleForm.formUrl = res.url;
-      this.ruleForm.formSex = res.sex;
-      this.ruleForm.formSexx = res.sexx;
-      this.ruleForm.formIntroduce = res.introduce;
-      this.ruleForm.formAddress = res.address;
-      this.ruleForm.formPostCode = res.postcode;
-      this.ruleForm.formCountry = res.country;
-      this.ruleForm.name = res.name;
-      this.ruleForm.introduce = res.introduce;
-      this.imageUrl = res.userUrl;
-      this.introduce = res.introduce;
-      this.name = res.name;
-    });
+    console.log(this.$route);
+    const userId = this.$route.query.id;
+    this.userInfo({ userId });
+    this.getMineInfo();
   },
   components: {},
 };

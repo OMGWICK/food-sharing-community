@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-02 12:56:11
  * @FilePath: \food-sharing-community\src\views\user\Personal.vue
- * @LastEditTime: 2021-03-03 22:15:24
+ * @LastEditTime: 2021-03-04 22:58:42
 -->
 <!--
  * @Author: Spring Breeze
@@ -21,6 +21,7 @@
           :http-request="upload"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
+          :disabled="show"
         >
           <img
             id="user-img"
@@ -330,7 +331,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route);
     const userId = this.$route.query.id;
     this.userInfo({ userId });
     this.getMineInfo();

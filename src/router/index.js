@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\router\index.js
- * @LastEditTime: 2021-03-03 20:36:06
+ * @LastEditTime: 2021-03-04 22:30:10
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -58,6 +58,14 @@ const routes = [
             component: () => import('@/views/user/Dymine'),
             meta: {
               title: '我发布的',
+            },
+          },
+          {
+            path: '/treasure',
+            name: 'Treasure',
+            component: () => import('@/views/user/collection'),
+            meta: {
+              title: '我收藏的',
             },
           },
         ],

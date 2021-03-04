@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\Home.vue
- * @LastEditTime: 2021-03-03 20:55:29
+ * @LastEditTime: 2021-03-04 22:32:03
 -->
 <template>
   <div class="home">
@@ -24,7 +24,7 @@
         </el-menu>
       </div>
       <div class="nav-user">
-        <i class="el-icon-search"></i>
+        <a href="#search"><i class="el-icon-search"></i></a>
         <div class="user" @click="toMine">
           <el-avatar :size="20" :src="circleUrl" @error="errorHandler">
             <img
@@ -43,13 +43,9 @@
         </el-dropdown>
       </div>
     </div>
-    <router-view></router-view>
-    <!-- <div class="carousel">
-      <Carousel />
-    </div>
-    <div class="home-search">
-      <HomeSearch />
-    </div> -->
+    <vue-page-transition name="fade-in-down">
+      <router-view></router-view>
+    </vue-page-transition>
     <footer>
       <PageFooter />
     </footer>
@@ -57,10 +53,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-// import Carousel from "@/components/Carousel";
-// import HomeSearch from "@/components/HomeSearch";
 import PageFooter from '@/components/PageFooter';
 import { userInfo } from '@/api/user';
 
@@ -92,8 +84,6 @@ export default {
     },
   },
   components: {
-    // Carousel,
-    // HomeSearch,
     PageFooter,
   },
 };

@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\center.vue
- * @LastEditTime: 2021-03-03 10:07:48
+ * @LastEditTime: 2021-03-04 22:57:13
 -->
 <template>
   <div class="create-center">
@@ -222,7 +222,6 @@ export default {
     //上传内容图片
     handleSuccess(res) {},
     uploadImg(f) {
-      console.log('123');
       let formData = new FormData();
       formData.append('file', f.file);
       imgUpload(formData)

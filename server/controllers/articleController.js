@@ -2,17 +2,12 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \server\controllers\articleController.js
- * @LastEditTime: 2021-03-03 21:39:23
+ * @LastEditTime: 2021-03-04 21:20:07
  */
 const Dynamic = require('../models/article');
 const User = require('../models/users');
 
 exports.article_post = function(req, res) {
-  // console.log(req.body)
-  // let content = req.body.content;
-  // let addTime = req.body.addTime;
-  // let writer = req.session.userinfo.userid;
-  // let imgUrl = req.body.imgUrl;
   let { content, coverImgUrl, title } = req.body;
   let writer = req.data.userid;
   console.log(req.data, req.body);
@@ -94,7 +89,7 @@ exports.good_get = function(req, res) {
   Dynamic.find({}, 'title coverImgUrl created')
     .populate('writer')
     .limit(8)
-    .skip(2)
+    .skip(3)
     .exec((err, docs) => {
       if (err) {
         console.log(err);
@@ -114,5 +109,18 @@ exports.detail_get = function(req, res) {
         return;
       }
       res.json({ code: 200, data: docs });
+    });
+};
+
+exports.oldlist_get = function(req, res) {
+  Dynamic.find({}, 'title coverImgUrl')
+    .populate('writer')
+    .limit(8)
+    .exec((err, docs) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.json({ code: 200, docs });
     });
 };

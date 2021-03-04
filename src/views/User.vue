@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\User.vue
- * @LastEditTime: 2021-03-03 22:13:16
+ * @LastEditTime: 2021-03-04 22:58:07
 -->
 <template>
   <div class="mine">
@@ -53,18 +53,22 @@
               <i class="el-icon-knife-fork"></i>
               <span slot="title">我发布的</span>
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item
+              index="/treasure"
+              :route="{
+                path: '/treasure',
+                query: { id: $route.query.id },
+              }"
+            >
               <i class="el-icon-document"></i>
-              <span slot="title">导航三</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-setting"></i>
-              <span slot="title">导航四</span>
+              <span slot="title">我收藏的</span>
             </el-menu-item>
           </el-menu>
         </el-col>
         <div class="page">
-          <router-view></router-view>
+          <vue-page-transition name="fade-in-right">
+            <router-view></router-view>
+          </vue-page-transition>
         </div>
       </el-row>
     </div>
@@ -79,14 +83,14 @@ export default {
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
   },
   mounted() {
-    console.log(this.$route.query.id);
+    // console.log(this.$route.query.id);
   },
   components: {},
 };

@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\api\article.js
- * @LastEditTime: 2021-03-03 14:22:59
+ * @LastEditTime: 2021-03-04 21:11:02
  */
 import request from '@/utils/request';
 
@@ -62,6 +62,47 @@ export function goodArticleList(params) {
 export function detailArticleList(params) {
   return request({
     url: '/detail/articleList',
+    method: 'get',
+    params,
+  });
+}
+
+//收藏文章
+export function postCollection(data) {
+  return request({
+    url: '/postCollection',
+    method: 'post',
+    data,
+  });
+}
+//取消收藏
+export function deleteCollection(data) {
+  return request({
+    url: '/deleteCollection',
+    method: 'delete',
+    data,
+  });
+}
+//获取收藏状态
+export function statusCollection(data) {
+  return request({
+    url: '/status/collection',
+    method: 'post',
+    data,
+  });
+}
+//获取收藏文章
+export function getCollection(params) {
+  return request({
+    url: '/getCollection',
+    method: 'get',
+    params,
+  });
+}
+
+export function oldLists(params) {
+  return request({
+    url: '/oldLists',
     method: 'get',
     params,
   });

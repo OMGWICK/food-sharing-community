@@ -1,55 +1,59 @@
-import axios from 'axios'
-import {
-  Message
-} from 'element-ui'
-import store from '@/store'
+/*
+ * @Author: Spring Breeze
+ * @Date: 2021-03-01 18:43:48
+ * @FilePath: \food-sharing-community\src\utils\request.js
+ * @LastEditTime: 2021-03-04 22:59:35
+ */
+import axios from 'axios';
+import { Message } from 'element-ui';
+import store from '@/store';
 // import {
 //   Encrypt,
 //   Decrypt
 // } from './aesEncrypt.js'
-import { getToken } from '@/utils/jsToken'
+import { getToken } from '@/utils/jsToken';
 
 // create instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,  //api url
-  timeout: 10000 // request timeout
-})
+  baseURL: process.env.VUE_APP_BASE_API, //api url
+  timeout: 10000, // request timeout
+});
 
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = '';
 
 // request interceptor
 service.interceptors.request.use(
-  config => {
+  (config) => {
     // do something before request is sent
     if (store.state.user.token) {
-      config.headers['Authorization'] = 'Bearer ' + getToken()
+      config.headers['Authorization'] = 'Bearer ' + getToken();
     }
-    console.log(config)
-    return config
+    // console.log(config)
+    return config;
   },
-  error => {
+  (error) => {
     // do something with request error
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
-)
+);
 
 // response interceptor
 service.interceptors.response.use(
-  response => {
-    const res = response.data
-    console.log(response)
-    console.log(res)
-    return res
+  (response) => {
+    const res = response.data;
+    // console.log(response)
+    // console.log(res)
+    return res;
   },
-  error => {
-    console.log('err' + error) // error
+  (error) => {
+    console.log('err' + error); // error
     Message({
       message: error.message,
       type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
+      duration: 5 * 1000,
+    });
+    return Promise.reject(error);
   }
-)
+);
 
-export default service
+export default service;

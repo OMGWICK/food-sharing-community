@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-03 09:24:36
  * @FilePath: \food-sharing-community\src\components\indexArticle\index.vue
- * @LastEditTime: 2021-03-03 21:52:39
+ * @LastEditTime: 2021-03-04 22:56:48
 -->
 <template>
   <div class="article">
@@ -71,22 +71,57 @@
           </el-card>
         </div>
       </div>
+
+      <div class="article-good">
+        <div class="title1">
+          经年累月<span @click="$router.push('/share')">查看全部</span>
+        </div>
+        <div class="personal">
+          <el-card
+            v-for="(item, index) in oldList"
+            :body-style="{ padding: '0px' }"
+            :key="index + 1"
+            @click.native="toDetail(item._id)"
+          >
+            <div class="headImg">
+              <img :src="item.coverImgUrl" class="image" />
+            </div>
+            <div class="foot">
+              <span>{{ item.title }}</span>
+              <div class="bottom clearfix">
+                <div class="user">
+                  <el-avatar :size="20" :src="item.writer.userUrl">
+                    <img
+                      src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                    />
+                  </el-avatar>
+                </div>
+                <span class="name" @click.stop="toUser(item.writer._id)">{{
+                  item.writer.name
+                }}</span>
+              </div>
+            </div>
+          </el-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { articleLists, goodArticleList } from '@/api/article';
+import { articleLists, goodArticleList, oldLists } from '@/api/article';
 export default {
   data() {
     return {
       lists: '',
       goodlists: '',
+      oldList: '',
     };
   },
   created() {
     this.getNewArt();
     this.goodArticleList();
+    this.oldArticleLists();
   },
   methods: {
     getNewArt() {
@@ -97,6 +132,11 @@ export default {
     goodArticleList() {
       goodArticleList().then((res) => {
         this.goodlists = res.docs;
+      });
+    },
+    oldArticleLists() {
+      oldLists().then((res) => {
+        this.oldList = res.docs;
       });
     },
     toDetail(id) {

@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-03 12:08:59
  * @FilePath: \food-sharing-community\src\views\Share.vue
- * @LastEditTime: 2021-03-03 22:11:23
+ * @LastEditTime: 2021-03-04 22:52:08
 -->
 <template>
   <div class="share-article">
@@ -68,10 +68,9 @@
               background
               prev-text="上一页"
               next-text="下一页"
-              @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page="parseInt($route.query.page || 1)"
-              :page-size="100"
+              :page-size="24"
               layout="total, prev, pager, next, jumper"
               :total="realTotal"
             ></el-pagination>

@@ -1,8 +1,14 @@
 <!--
  * @Author: Spring Breeze
+ * @Date: 2021-03-04 19:57:44
+ * @FilePath: \food-sharing-community\src\views\user\collection.vue
+ * @LastEditTime: 2021-03-04 22:58:23
+-->
+<!--
+ * @Author: Spring Breeze
  * @Date: 2021-03-02 15:40:52
  * @FilePath: \food-sharing-community\src\views\user\Dymine.vue
- * @LastEditTime: 2021-03-04 22:58:15
+ * @LastEditTime: 2021-03-03 21:55:38
 -->
 <template>
   <div class="personal">
@@ -47,9 +53,9 @@
 </template>
 
 <script>
-import { mineArticleLists } from '@/api/article';
+import { getCollection } from '@/api/article';
 export default {
-  name: 'Dymine',
+  name: 'Collection',
   data() {
     return {
       lists: '',
@@ -57,7 +63,7 @@ export default {
     };
   },
   created() {
-    this.mineArticleLists({
+    this.getCollection({
       pageNumber: parseInt(this.$route.query.page || 1),
       userId: this.$route.query.id,
     });
@@ -65,10 +71,10 @@ export default {
   // mounted() {
   // },
   methods: {
-    mineArticleLists(query) {
-      mineArticleLists(query)
+    getCollection(query) {
+      getCollection(query)
         .then((res) => {
-          this.lists = res.docs;
+          this.lists = res.data;
           this.realTotal = parseInt(res.total);
         })
         .catch((err) => {
@@ -98,7 +104,7 @@ export default {
   watch: {
     '$route.query'(query) {
       // console.log(query);
-      this.mineArticleLists({
+      this.getCollection({
         pageNumber: parseInt(query.page || 1),
         userId: this.$route.query.id,
       });

@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-03 14:14:33
  * @FilePath: \food-sharing-community\src\views\Detail.vue
- * @LastEditTime: 2021-03-03 22:22:59
+ * @LastEditTime: 2021-03-04 22:57:22
 -->
 <!--
  * @Author: Spring Breeze
@@ -36,6 +36,11 @@
         <img :src="lists.coverImgUrl" alt="" />
       </div>
       <div class="main-content">
+        <span
+          class="collection el-icon-collection-tag"
+          @click="postCollection(lists._id)"
+          >{{ collection == 0 ? '收藏' : '已收藏' }}</span
+        >
         <div class="title">
           {{ lists.title }}
         </div>
@@ -109,7 +114,12 @@
 </template>
 
 <script>
-import { detailArticleList } from '@/api/article';
+import {
+  detailArticleList,
+  postCollection,
+  statusCollection,
+  deleteCollection,
+} from '@/api/article';
 import { userInfo } from '@/api/user';
 import { addComment, getComment, delComment } from '@/api/comment';
 
@@ -117,6 +127,7 @@ export default {
   name: 'Detail',
   data() {
     return {
+      collection: 0,
       lists: '',
       url: '',
       input: '',
@@ -135,8 +146,43 @@ export default {
     this.detailArticleList(id);
     this.getHeadimg();
     this.getComment();
+    this.statusCollection(id);
   },
   methods: {
+    //收藏
+    postCollection(id) {
+      if (this.collection == 1) {
+        this.deleteCollection(id);
+      } else {
+        postCollection({ dynamic_id: id })
+          .then((res) => {
+            this.collection = 1;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    //取消收藏
+    deleteCollection(id) {
+      deleteCollection({ dynamic_id: id })
+        .then((res) => {
+          this.collection = 0;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    //获取收藏状态
+    statusCollection(id) {
+      statusCollection({ dynamic_id: id })
+        .then((res) => {
+          this.collection = parseInt(res.status);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     detailArticleList(query) {
       detailArticleList({ id: query })
         .then((res) => {
@@ -182,7 +228,6 @@ export default {
     },
     //发表评论
     addComment() {
-      console.log('123');
       if (this.input.length === 0) {
         this.$message.error({
           message: '内容不能为空',
@@ -268,17 +313,30 @@ export default {
     padding-bottom: 10px;
   }
   img {
-    margin-top: 10px;
+    // margin-top: 10px;
     border-radius: 10px;
   }
 
   .main-content {
+    position: relative;
     padding-bottom: 20px;
     border-radius: 20px;
     margin-top: 10px;
     padding-top: 10px;
     background-color: #f2f3f5;
     padding-left: 25px;
+
+    .collection {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: #7977c0;
+      cursor: pointer;
+    }
+    .collection:hover {
+      text-decoration-line: underline;
+    }
+
     .title {
       font-size: 40px;
     }

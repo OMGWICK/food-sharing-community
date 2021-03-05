@@ -1,8 +1,8 @@
 /*
  * @Author: Spring Breeze
  * @Date: 2021-03-04 10:24:04
- * @FilePath: \server\controllers\collectionController.js
- * @LastEditTime: 2021-03-04 22:51:26
+ * @FilePath: \food-sharing-community\server\controllers\collectionController.js
+ * @LastEditTime: 2021-03-05 09:58:22
  */
 const Collection = require('../models/collection');
 const Dynamic = require('../models/article');
@@ -65,25 +65,6 @@ exports.post = function(req, res) {
     }
     res.json({ msg: '增加成功' });
   });
-  // Collection.findById({
-  //     _id: dynamic_id
-  // }, (err, doc) => {
-  //     if (err) {
-  //         console.log(err)
-  //         return;
-  //     }
-  //     if (doc) {
-  //         doc.collectState = 1;
-  //         doc.save(err => {
-  //             if (err) {
-  //                 console.log(err)
-  //             }
-  //         })
-  //         res.json({
-  //             resultCode: 1
-  //         })
-  //     }
-  // })
 };
 
 exports.delete = function(req, res) {
@@ -98,23 +79,4 @@ exports.delete = function(req, res) {
     }
     res.json({ msg: '取消成功' });
   });
-  // Dynamic.findById({
-  //     _id: dynamic_id
-  // }, (err, doc) => {
-  //     if (err) {
-  //         console.log(err)
-  //         return;
-  //     }
-  //     if (doc) {
-  //         doc.collectState = 0;
-  //         doc.save(err => {
-  //             if (err) {
-  //                 console.log(err)
-  //             }
-  //         })
-  //         res.json({
-  //             resultCode: 1
-  //         })
-  //     }
-  // })
 };

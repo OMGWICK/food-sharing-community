@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\About.vue
- * @LastEditTime: 2021-03-04 21:34:30
+ * @LastEditTime: 2021-03-05 10:32:21
 -->
 <template>
   <div class="about">
@@ -13,26 +13,26 @@
       </p>
       <p>
         <img
-          src="https://food-1300857246.cos.ap-chengdu.myqcloud.com/aboutimg/pexels-ella-olsson-1640777ss.jpg"
+          src="https://img-1300857246.cos.ap-chengdu.myqcloud.com/pexels-alexy-almond-3756498.jpg"
           alt=""
           style="width:500px;"
         />
         <img
-          src="https://food-1300857246.cos.ap-chengdu.myqcloud.com/aboutimg/pexels-adonyi-g%C3%A1bor-1414651.jpg"
+          src="https://img-1300857246.cos.ap-chengdu.myqcloud.com/pexels-pixabay-209449.jpg"
           alt=""
           style="width:400px;"
         />
         <img
-          src="https://food-1300857246.cos.ap-chengdu.myqcloud.com/aboutimg/pexels-ella-olsson-3026808.jpg"
+          src="https://img-1300857246.cos.ap-chengdu.myqcloud.com/pexels-pixabay-461428.jpg"
           alt=""
           style="width:800px;"
         />
         <img
-          src="https://food-1300857246.cos.ap-chengdu.myqcloud.com/aboutimg/1.jpg"
+          src="https://img-1300857246.cos.ap-chengdu.myqcloud.com/u%3D1646649021%2C1645946872%26fm%3D11%26gp%3D0.jpg"
           alt
         />
         <img
-          src="https://food-1300857246.cos.ap-chengdu.myqcloud.com/aboutimg/2.png"
+          src="https://img-1300857246.cos.ap-chengdu.myqcloud.com/u%3D3261668639%2C626608026%26fm%3D26%26gp%3D0.jpg"
           alt
         />
       </p>

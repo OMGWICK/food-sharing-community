@@ -1,8 +1,8 @@
 /*
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
- * @FilePath: \server\routes\api.js
- * @LastEditTime: 2021-03-04 21:09:02
+ * @FilePath: \food-sharing-community\server\routes\api.js
+ * @LastEditTime: 2021-03-05 17:53:38
  */
 var express = require('express');
 var router = express.Router();
@@ -72,5 +72,26 @@ router.post('/status/collection', collectionController.status_post);
 
 //获取远古文章
 router.get('/oldLists', articleController.oldlist_get);
+
+let data = { timestamp: 0, messages: [] };
+router.get('/chat/data', function(req, res, next) {
+  let ts = req.query.timestamp;
+  if (data.timestamp > ts) {
+    res.send(data);
+  } else {
+    res.sendStatus(200);
+  }
+});
+
+router.post('/chat/send', function(req, res, next) {
+  let d = req.body;
+  let now = Date.now();
+  data.timestamp = now;
+  data.messages.push({
+    content: d.content,
+    time: now,
+  });
+  res.sendStatus(200);
+});
 
 module.exports = router;

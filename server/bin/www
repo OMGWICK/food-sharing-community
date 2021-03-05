@@ -1,4 +1,9 @@
-#!/usr/bin/env node
+/*
+ * @Author: Spring Breeze
+ * @Date: 2021-03-01 18:43:48
+ * @FilePath: \food-sharing-community\server\bin\www
+ * @LastEditTime: 2021-03-05 12:18:50
+ */
 
 /**
  * Module dependencies.
@@ -6,7 +11,9 @@
 
 var app = require('../app');
 var debug = require('debug')('server:server');
-var http = require('http');
+const https = require('https');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +26,13 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const cert = readFileSync(join(__dirname, '../cert/cert.pem'));
+const key = readFileSync(join(__dirname, '../cert/key.pem'));
+const options = {
+  cert,
+  key,
+};
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -58,9 +71,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,10 +94,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
 
-console.log('http://127.0.0.1:3000/')
+console.log('http://127.0.0.1:3000/');

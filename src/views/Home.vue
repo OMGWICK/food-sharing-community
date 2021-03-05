@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\views\Home.vue
- * @LastEditTime: 2021-03-04 22:32:03
+ * @LastEditTime: 2021-03-05 16:22:42
 -->
 <template>
   <div class="home">
@@ -24,6 +24,9 @@
         </el-menu>
       </div>
       <div class="nav-user">
+        <a href="javascript:void(0)" @click="$router.push('/chat')"
+          ><i class="el-icon-chat-line-round"></i
+        ></a>
         <a href="#search"><i class="el-icon-search"></i></a>
         <div class="user" @click="toMine">
           <el-avatar :size="20" :src="circleUrl" @error="errorHandler">

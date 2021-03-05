@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-01 18:43:48
  * @FilePath: \food-sharing-community\src\router\index.js
- * @LastEditTime: 2021-03-04 22:30:10
+ * @LastEditTime: 2021-03-05 16:20:10
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -36,6 +36,14 @@ const routes = [
         component: () => import('@/views/About'),
         meta: {
           title: '关于我们',
+        },
+      },
+      {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/views/Chat'),
+        meta: {
+          title: '聊天',
         },
       },
       {

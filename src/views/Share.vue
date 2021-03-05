@@ -2,7 +2,7 @@
  * @Author: Spring Breeze
  * @Date: 2021-03-03 12:08:59
  * @FilePath: \food-sharing-community\src\views\Share.vue
- * @LastEditTime: 2021-03-04 22:52:08
+ * @LastEditTime: 2021-03-05 19:32:43
 -->
 <template>
   <div class="share-article">
@@ -62,7 +62,10 @@
             </div>
           </div>
         </el-card>
-        <div class="pagination-block" v-if="realTotal > 24">
+        <div
+          class="pagination-block"
+          v-if="realTotal > 24 && lists.length !== 0"
+        >
           <div class="block">
             <el-pagination
               background
